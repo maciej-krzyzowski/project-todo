@@ -6,7 +6,7 @@ const Card = props => (
     <section className={styles.component}>
         <div>{props.title}</div>
     </section>
-)
+);
 
 Card.propTypes = {
     title: PropTypes.string.isRequired,
