@@ -10,7 +10,7 @@ const Button = ({variant = '', ...otherProps}) => (
 );
 
 Button.propTypes = {
-    variant: PropTypes.string.isRequired,
+    variant: PropTypes.node,
 };
 
 export default Button;
