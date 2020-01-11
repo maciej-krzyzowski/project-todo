@@ -38,9 +38,7 @@ class Creator extends React.Component {
 
     handleCancel = () => {
         const alertClick = window.confirm('Are you sure?');
-        if (alertClick == false) {
-            // console.log('false');
-        } else {
+        if (alertClick == true) {
             this.setState({
                 value: '',
                 visibleButtons: false,
