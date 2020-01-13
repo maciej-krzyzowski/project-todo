@@ -25,7 +25,6 @@ class Search extends React.Component {
     handleChange(event){
         this.setState({
             value: event.target.value,
-            visibleButtons: event.target.value.length > 0,
         });
     }
 
@@ -43,7 +42,6 @@ class Search extends React.Component {
         const {text, countVisible, countAll} = this.props;
         const {value} = this.state;
         const {icon} = settings.search;
-        console.log(value);
         return (
             <div className={styles.component}>
                 <input
