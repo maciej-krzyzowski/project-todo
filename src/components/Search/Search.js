@@ -26,10 +26,10 @@ class Search extends React.Component {
         this.setState({
             value: event.target.value,
         });
+        this.props.changeSearchString(this.state.value);
     }
 
     handleOK(){
-        this.props.changeSearchString(this.state.value);
     }
 
     componentDidUpdate(prevProps){
