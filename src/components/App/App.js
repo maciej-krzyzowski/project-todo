@@ -6,12 +6,6 @@ import Search from '../Search/SearchContainer.js';
 import { DragDropContext } from 'react-beautiful-dnd';
 
 class App extends React.Component {
-    static propTypes = {
-        title: PropTypes.node,
-        subtitle: PropTypes.node,
-        lists: PropTypes.array,
-        moveCard: PropTypes.func,
-    }
     render() {
         const {title, subtitle, lists, moveCard} = this.props;
         const moveCardHandler = result => {
@@ -51,5 +45,12 @@ class App extends React.Component {
         );
     }
 }
+
+App.propTypes = {
+    title: PropTypes.node,
+    subtitle: PropTypes.node,
+    lists: PropTypes.array,
+    moveCard: PropTypes.func,
+};
 
 export default App;
