@@ -12,6 +12,12 @@ export const settings = {
     },
     defaultListDescription: '<p>I can do all the things!!!</p>',
     defaultColumnIcon: 'list-alt',
+    headerIcon: 'camera',
+    infoTitle: 'Info',
+    infoImage: 'https://cdn.cjr.org/wp-content/uploads/2019/07/AdobeStock_100000042-e1563305717660-686x371.jpeg',
+    faqTitle: 'FAQ',
+    faqImage: 'http://serwer1894953.home.pl/fio/wp-content/uploads/2018/07/header_faq.png',
+    contens: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 };
 
 export const pageContents = {
