@@ -10,6 +10,7 @@ import { Droppable } from 'react-beautiful-dnd';
 class Column extends React.Component {
     render() {
         const {title, icon, cards, addCard, id} = this.props;
+        
         return (
             <section className={styles.component}>
                 <h3 className={styles.title}>{title}
@@ -39,7 +40,6 @@ class Column extends React.Component {
         );
     }
 }
-
 
 Column.propTypes = {
     title: PropTypes.string,

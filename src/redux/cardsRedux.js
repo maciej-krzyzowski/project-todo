@@ -1,7 +1,9 @@
 import shortid from 'shortid';
 
 // selectors
-export const getCardsForColumn = ({cards, searchString}, columnId) => cards.filter(card => card.columnId == columnId && new RegExp(searchString, 'i').test(card.title));
+export const getCardsForColumn = ({cards, searchString}, columnId) => {
+    return cards.filter(card => card.columnId == columnId && new RegExp(searchString, 'i').test(card.title));
+};
 
 // action name creator
 const reducerName = 'cards';
@@ -16,26 +18,20 @@ export const createActionAddCard = payload => ({ payload: { ...payload, id: shor
 export const createAction_moveCard = payload => ({ payload, type: MOVE_CARD});
 
 // reducer
-export default function reducer(state = [], statePart =[], action = {}) {
-    console.warn(action);
-    
+export default function reducer(statePart = {}, action = {}) {
     switch (action.type) {
         case ADD_CARD:
-            console.log('dupa1');
-            return [...state, action.payload];
+            return [...statePart, action.payload];
         case MOVE_CARD: {
-            console.log('dupa2');
             const {id, src, dest} = action.payload;
             const targetCard = statePart.filter(card => card.id == id)[0];
             const targetColumnCards = statePart.filter(card => card.columnId == dest.columnId).sort((a, b) => a.index - b.index);
-            console.log(targetColumnCards.map(card => `${card.index}, title: ${card.title}`));
-            
+            let newCards;
             if(dest.columnId == src.columnId) {
                 targetColumnCards.splice(src.index, 1);
                 targetColumnCards.splice(dest.index, 0, targetCard);
-                return statePart.map(card => {
+                newCards = statePart.map(card => {
                     const targetColumnIndex = targetColumnCards.indexOf(card);
-                  
                     if(targetColumnIndex > -1 && card.index != targetColumnIndex){
                         return {...card, index: targetColumnIndex};
                     } else {
@@ -50,12 +46,7 @@ export default function reducer(state = [], statePart =[], action = {}) {
                 // add card to targetColumn
                 targetColumnCards.splice(dest.index, 0, targetCard);
 
-                console.log('sourceColumnCards:');
-                console.log(sourceColumnCards.map(card => `${card.index}, title: ${card.title}`));
-                console.log('targetColumnCards:');
-                console.log(targetColumnCards.map(card => `${card.index}, title: ${card.title}`));
-
-                return statePart.map(card => {
+                newCards = statePart.map(card => {
                     const targetColumnIndex = targetColumnCards.indexOf(card);
 
                     if(card == targetCard){
@@ -78,9 +69,10 @@ export default function reducer(state = [], statePart =[], action = {}) {
                     }
                 });
             }
+            newCards.sort((a, b) => a.index - b.index);
+            return newCards;
         }
         default:
-            console.log('dupa3');
-            return state;
+            return statePart;
     }
 }

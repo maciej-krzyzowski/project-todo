@@ -19,6 +19,8 @@ class List extends React.Component {
         description: settings.defaultListDescription,
     }
 
+
+
     render() {
         const {title, image, description, columns, addColumn} = this.props;
         return (
