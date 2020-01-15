@@ -1,18 +1,25 @@
 import React from 'react';
+import styles from './App.scss';
 import Home from '../Home/HomeContainer.js';
 import Info from '../Info/Info';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MainLayout from '../MainLayout/MainLayout.js';
 import Faq from '../FAQ/FAQ.js';
+import { AnimatedSwitch } from 'react-router-transition';
 
 const App = () => (
     <Router>
         <MainLayout>
-            <Switch>
+            <AnimatedSwitch
+                atEnter={{ opacity: 0 }}
+                atLeave={{ opacity: 0 }}
+                atActive={{ opacity: 1 }}
+                className={styles.switchWrapper}
+            >
                 <Route exact path='/' component={Home} />
                 <Route path='/info' component={Info} />
                 <Route path='/faq' component={Faq} />
-            </Switch>
+            </AnimatedSwitch>
         </MainLayout>
     </Router>
 );
