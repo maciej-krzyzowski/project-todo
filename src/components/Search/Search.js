@@ -21,12 +21,6 @@ class Search extends React.Component {
         this.props.changeSearchString(this.state.value);
     }
     
-    enterPress(event) {
-        if(event.keyCode === 'Enter'){
-            this.props.changeSearchString(this.state.value);
-        }
-    }
-
     componentDidUpdate(prevProps){
         if(this.props.searchString != prevProps.searchString){
             this.setState({value: this.props.searchString});
@@ -40,17 +34,15 @@ class Search extends React.Component {
         return (
             <Container>
                 <div className={styles.component}>
-                    <form>
-                        <input
-                            type='text'
-                            placeholder={text}
-                            value={value}
-                            onChange={event => this.handleChange(event)}
-                            // onKeyPress={event => this.enterPress(event)}
-                        />
-                    </form>
+                    <input
+                        type='text'
+                        placeholder={text}
+                        value={value}
+                        onChange={event => this.handleChange(event)}
+                        onKeyDown={event => event.keyCode === 13 && this.handleOK()}
+                    />
                     <div className={styles.buttons}>
-                        <Button onKeyPress={event => this.enterPress(event)} onClick={() => this.handleOK()}><Icon name={icon} /></Button>
+                        <Button onClick={() => this.handleOK()}><Icon name={icon} /></Button>
                     </div>
                     <div>
                         { countVisible == countAll ? '' : `${countVisible} / ${countAll}` }
