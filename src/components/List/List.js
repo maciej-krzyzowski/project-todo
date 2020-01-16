@@ -9,6 +9,9 @@ import Creator from '../Creator/Creator.js';
 import Container from '../Container/Container.js';
 
 class List extends React.Component {
+    static defaultProps = {
+        description: settings.defaultListDescription,
+    } 
     render() {
         const {title, image, description, columns, addColumn} = this.props;
         return (

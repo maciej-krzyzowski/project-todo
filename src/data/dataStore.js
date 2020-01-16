@@ -91,6 +91,20 @@ const lists = [
         description: 'Interesting things I want to check out!',
         image: 'http://uploads.kodilla.com/bootcamp/fer/11.react/space.png',
     },
+
+    {
+        id: 'list-2',
+        title: 'Work.',
+        description: 'What I have to do.',
+        image: 'https://i2.wp.com/vanrijmenam.nl/wp-content/uploads/Future-of-Work-linkedin.jpg?fit=1500%2C700&ssl=1&quality=100.3018042807560',
+    },
+    
+    {
+        id: 'list-3',
+        title: 'My summer 2020!',
+        description: 'Places I wants to see!',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&w=1000&q=80',
+    },
 ];
   
 const columns = [
