@@ -7,13 +7,34 @@ import { settings } from '../../data/dataStore.js';
 import ReactHtmlParser from 'react-html-parser';
 import Creator from '../Creator/Creator.js';
 import Container from '../Container/Container.js';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class List extends React.Component {
-    static defaultProps = {
-        description: settings.defaultListDescription,
-    } 
     render() {
-        const {title, image, description, columns, addColumn} = this.props;
+        const {title, image, description, columns, addColumn, moveCard} = this.props;
+        const moveCardHandler = result => {
+            if(
+                result.destination
+                &&
+                (
+                    result.destination.index != result.source.index
+                    ||
+                    result.destination.droppableId != result.source.droppableId
+                )
+            ){
+                moveCard({
+                    id: result.draggableId,
+                    dest: {
+                        index: result.destination.index,
+                        columnId: result.destination.droppableId,
+                    },
+                    src: {
+                        index: result.source.index,
+                        columnId: result.source.droppableId,
+                    },
+                });
+            }
+        };
         return (
             <section className={styles.component}>
                 <Container> 
@@ -22,9 +43,11 @@ class List extends React.Component {
                         {ReactHtmlParser(description)}
                     </div>
                     <div className={styles.columns}>
-                        {columns.map(columnData => (
-                            <Column key={columnData.id} {...columnData} />
-                        ))}
+                        <DragDropContext onDragEnd={moveCardHandler}>
+                            {columns.map(columnData => (
+                                <Column {...columnData} key={columnData.id} />
+                            ))}
+                        </DragDropContext>
                     </div>
                     <div className={styles.creator}>
                         <Creator text={settings.columnCreatorText} action={addColumn} />
@@ -41,6 +64,7 @@ List.propTypes = {
     columns: PropTypes.array,
     description: PropTypes.node,
     addColumn: PropTypes.func,
+    moveCard: PropTypes.func,
 };
 
 List.defaultProps = {
