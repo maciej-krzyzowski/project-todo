@@ -44,6 +44,7 @@ class Creator extends React.Component {
                     placeholder={this.props.text}
                     value={this.state.value}
                     onChange={this.handleChange}
+                    onKeyDown={event => event.keyCode === 13 && this.handleOK() || event.keyCode === 27 && this.handleCancel()}
                 />
                 <div className={styles.buttons + (this.state.visibleButtons ? ' ' + styles.buttonsShown : '')}>
                     <Button onClick={this.handleOK}>OK</Button>
